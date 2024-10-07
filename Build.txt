@@ -1,1 +1,1 @@
-g++ '/home/kynan/Desktop/OpenGL Renderer/Main.cpp' -o '/home/kynan/Desktop/OpenGL Renderer/OpenGLRenderer' -lglfw -lGLEW -lGL -lGLU -lglm
+g++ '/DirectoryExample/Main.cpp' -o '/DirectoryExample/Oscillys' -lglfw -lGLEW -lGL -lGLU -lglm
