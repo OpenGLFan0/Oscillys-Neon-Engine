@@ -167,35 +167,46 @@ int main(void)
     unsigned int shader = CreateShader(vertexShader, fragmentShader);
     glUseProgram(shader);
 
-    // Setup transformation matrix
-    glm::mat4 trans = glm::mat4(1.0f);
-    trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
-    trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+   // Setup transformation matrix
+glm::mat4 trans = glm::mat4(1.0f);
+trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
+trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 
-    unsigned int transformLoc = glGetUniformLocation(shader, "transform");
+// Get uniform location for the transformation matrix
+unsigned int transformLoc = glGetUniformLocation(shader, "transform");
+glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+
+// Initialize variables for delta time
+float deltaTime = 0.0f; // Variable to hold the time difference between frames
+float lastFrameTime = glfwGetTime(); // Initialize last frame time
+
+/* Loop until the user closes the window */
+while (!glfwWindowShouldClose(window))
+{
+    /* Render here */
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // Calculate delta time
+    float currentTime = glfwGetTime();
+    deltaTime = currentTime - lastFrameTime; // Calculate time since last frame
+    lastFrameTime = currentTime; // Update last frame time
+
+    // Update rotation over time using delta time
+    trans = glm::rotate(trans, glm::radians(90.0f) * deltaTime, glm::vec3(0.0f, 0.0f, 1.0f));
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
-    /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
-        /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+    // Bind the texture and VAO, and draw
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindVertexArray(vao);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
-        // Update rotation over time
-        trans = glm::rotate(trans, (float)glfwGetTime() * glm::radians(1.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+    /* Swap front and back buffers */
+    glfwSwapBuffers(window);
 
-        // Bind the texture and VAO, and draw
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glBindVertexArray(vao);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    /* Poll for and process events */
+    glfwPollEvents();
+}
 
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
-
-        /* Poll for and process events */
-        glfwPollEvents();
-    }
 
     // Cleanup
     glDeleteProgram(shader);
