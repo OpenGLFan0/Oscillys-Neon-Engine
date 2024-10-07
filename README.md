@@ -1,1 +1,1 @@
-Alpha 0.01: Renderer and core libraries created, transformation, rotation, texture, 2D plane, Window, OpenGL 4.3, GLFW, GLEW, GLM etc. Is open source and can be compiled universally using G++ on Windows, MacOS and Linux.
+Alpha 0.01: Renderer and core libraries created, transformation, rotation, texture, 2D object plane, Window Creation, Management and Loop, OpenGL 4.3, GLFW, GLEW, GLM etc. Its open source and can be compiled and used universally via G++ on Windows, MacOS and Linux.
