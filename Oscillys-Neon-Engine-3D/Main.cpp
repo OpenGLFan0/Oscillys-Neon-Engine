@@ -74,70 +74,71 @@ int main(void) {
 
     cout << glGetString(GL_VERSION) << endl;
 
-    // Define vertices (x, y, texX, texY)
-    float positions[] = {
+    // Define vertices (x, y, z, texX, texY)
+float positions[] = {
     // Back face (Z = -1.0)
-    -0.5f, -0.5f, -1.0f,   0.0f, 0.0f,  // Bottom-left
-     0.5f, -0.5f, -1.0f,   1.0f, 0.0f,  // Bottom-right
-     0.5f,  0.5f, -1.0f,   1.0f, 1.0f,  // Top-right
-    -0.5f,  0.5f, -1.0f,   0.0f, 1.0f,  // Top-left
+    -0.5f, -0.5f, -0.5f,   0.0f, 0.0f,  // Bottom-left
+     0.5f, -0.5f, -0.5f,   1.0f, 0.0f,  // Bottom-right
+     0.5f,  0.5f, -0.5f,   1.0f, 1.0f,  // Top-right
+    -0.5f,  0.5f, -0.5f,   0.0f, 1.0f,  // Top-left
 
-    // Front face (Z = 1.0)
-    -0.5f, -0.5f,  1.0f,   0.0f, 0.0f,  // Bottom-left
-     0.5f, -0.5f,  1.0f,   1.0f, 0.0f,  // Bottom-right
-     0.5f,  0.5f,  1.0f,   1.0f, 1.0f,  // Top-right
-    -0.5f,  0.5f,  1.0f,   0.0f, 1.0f,  // Top-left
+    // Front face (Z = 0.5)
+    -0.5f, -0.5f,  0.5f,   0.0f, 0.0f,  // Bottom-left
+     0.5f, -0.5f,  0.5f,   1.0f, 0.0f,  // Bottom-right
+     0.5f,  0.5f,  0.5f,   1.0f, 1.0f,  // Top-right
+    -0.5f,  0.5f,  0.5f,   0.0f, 1.0f,  // Top-left
 
     // Left face (X = -0.5)
-    -0.5f, -0.5f,  1.0f,   1.0f, 0.0f,  // Bottom-left (front)
-    -0.5f, -0.5f, -1.0f,   0.0f, 0.0f,  // Bottom-left (back)
-    -0.5f,  0.5f, -1.0f,   0.0f, 1.0f,  // Top-left (back)
-    -0.5f,  0.5f,  1.0f,   1.0f, 1.0f,  // Top-left (front)
+    -0.5f, -0.5f,  0.5f,   1.0f, 0.0f,  // Bottom-left (front)
+    -0.5f, -0.5f, -0.5f,   0.0f, 0.0f,  // Bottom-left (back)
+    -0.5f,  0.5f, -0.5f,   0.0f, 1.0f,  // Top-left (back)
+    -0.5f,  0.5f,  0.5f,   1.0f, 1.0f,  // Top-left (front)
 
     // Right face (X = 0.5)
-     0.5f, -0.5f,  1.0f,   1.0f, 0.0f,  // Bottom-right (front)
-     0.5f, -0.5f, -1.0f,   0.0f, 0.0f,  // Bottom-right (back)
-     0.5f,  0.5f, -1.0f,   0.0f, 1.0f,  // Top-right (back)
-     0.5f,  0.5f,  1.0f,   1.0f, 1.0f,  // Top-right (front)
+     0.5f, -0.5f,  0.5f,   1.0f, 0.0f,  // Bottom-right (front)
+     0.5f, -0.5f, -0.5f,   0.0f, 0.0f,  // Bottom-right (back)
+     0.5f,  0.5f, -0.5f,   0.0f, 1.0f,  // Top-right (back)
+     0.5f,  0.5f,  0.5f,   1.0f, 1.0f,  // Top-right (front)
 
     // Bottom face (Y = -0.5)
-    -0.5f, -0.5f, -1.0f,   0.0f, 1.0f,  // Bottom-left (back)
-     0.5f, -0.5f, -1.0f,   1.0f, 1.0f,  // Bottom-right (back)
-     0.5f, -0.5f,  1.0f,   1.0f, 0.0f,  // Bottom-right (front)
-    -0.5f, -0.5f,  1.0f,   0.0f, 0.0f,  // Bottom-left (front)
+    -0.5f, -0.5f, -0.5f,   0.0f, 1.0f,  // Bottom-left (back)
+     0.5f, -0.5f, -0.5f,   1.0f, 1.0f,  // Bottom-right (back)
+     0.5f, -0.5f,  0.5f,   1.0f, 0.0f,  // Bottom-right (front)
+    -0.5f, -0.5f,  0.5f,   0.0f, 0.0f,  // Bottom-left (front)
 
     // Top face (Y = 0.5)
-    -0.5f,  0.5f, -1.0f,   0.0f, 1.0f,  // Top-left (back)
-     0.5f,  0.5f, -1.0f,   1.0f, 1.0f,  // Top-right (back)
-     0.5f,  0.5f,  1.0f,   1.0f, 0.0f,  // Top-right (front)
-    -0.5f,  0.5f,  1.0f,   0.0f, 0.0f   // Top-left (front)
+    -0.5f,  0.5f, -0.5f,   0.0f, 1.0f,  // Top-left (back)
+     0.5f,  0.5f, -0.5f,   1.0f, 1.0f,  // Top-right (back)
+     0.5f,  0.5f,  0.5f,   1.0f, 0.0f,  // Top-right (front)
+    -0.5f,  0.5f,  0.5f,   0.0f, 0.0f   // Top-left (front)
 };
 
-    unsigned int indices[] = {
-         // Back face
-        0, 1, 2,
-        2, 3, 0,
+unsigned int indices[] = {
+    // Back face
+    0, 1, 2,
+    2, 3, 0,
 
-        // Front face
-        4, 5, 6,
-        6, 7, 4,
+    // Front face
+    4, 5, 6,
+    6, 7, 4,
 
-        // Left face
-        0, 4, 7,
-        7, 3, 0,
+    // Left face
+    8, 9, 10,
+    10, 11, 8,
 
-        // Right face
-        1, 5, 6,
-        6, 2, 1,
+    // Right face
+    12, 13, 14,
+    14, 15, 12,
 
-        // Bottom face
-        0, 1, 5,
-        5, 4, 0,
+    // Bottom face
+    16, 17, 18,
+    18, 19, 16,
 
-        // Top face
-        3, 2, 6,
-        6, 7, 3
-    };
+    // Top face
+    20, 21, 22,
+    22, 23, 20
+};
+
 
     // Create and bind VAO
     unsigned int vao;
@@ -176,7 +177,7 @@ int main(void) {
 
     // Load and generate the texture
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("Container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load("/home/kynan/Desktop/OpenGL Renderer/Oscillys-Neon-Engine-3D/Container.jpg", &width, &height, &nrChannels, 0);
     if (data) {
         GLenum format = nrChannels == 4 ? GL_RGBA : GL_RGB;
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);

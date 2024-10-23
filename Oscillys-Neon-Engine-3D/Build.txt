@@ -1,1 +1,1 @@
-g++ '/home/kynan/Desktop/OpenGL Renderer/Main.cpp' -o '/home/kynan/Desktop/OpenGL Renderer/OpenGLRenderer' -lglfw -lGLEW -lGL -lGLU -lglm
+g++ '/home/kynan/Desktop/OpenGL Renderer/Oscillys-Neon-Engine-3D/Main.cpp' -o '/home/kynan/Desktop/OpenGL Renderer/Oscillys-Neon-Engine-3D/OpenGLRenderer' -lglfw -lGLEW -lGL -lGLU -lglm
